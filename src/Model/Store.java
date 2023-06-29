@@ -16,7 +16,7 @@ public class Store {
     private String cabang;
     private String storeCabang;
     private double income;
-    private ArrayList<item> listMenu;
+    private ArrayList<Item> listMenu;
 
     public int getId() {
         return id;
@@ -50,11 +50,11 @@ public class Store {
         this.income = income;
     }
 
-    public ArrayList<item> getListMenu() {
+    public ArrayList<Item> getListMenu() {
         return listMenu;
     }
 
-    public void setListMenu(ArrayList<item> listMenu) {
+    public void setListMenu(ArrayList<Item> listMenu) {
         this.listMenu = listMenu;
     }
     
