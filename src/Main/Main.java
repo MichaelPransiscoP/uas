@@ -7,10 +7,10 @@ package Main;
 
 /**
  *
- * @author CoffeeShop
+ * @author TUF GAMING
  */
 public class Main {
     public static void main(String[] args) {
-        new View.LandingPage();
+        System.out.println("Hello ini main");
     }
 }

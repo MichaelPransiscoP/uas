@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author CoffeeShop
+ * @author Juan Nathaniel
  */
 public class Store {
     private int id;

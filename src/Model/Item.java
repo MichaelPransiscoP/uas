@@ -7,10 +7,9 @@ package Model;
 
 /**
  *
- * @author CoffeeShop
+ * @author Juan Nathaniel
  */
 public class Item {
-  
     private int id;
     private String name;
     private String desc;
@@ -56,4 +55,6 @@ public class Item {
     public void setAvailability(EnumCheckItem availability) {
         this.availability = availability;
     }
+    
+    
 }

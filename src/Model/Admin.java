@@ -7,7 +7,7 @@ package Model;
 
 /**
  *
- * @author CoffeeShop
+ * @author Juan Nathaniel
  */
 public class Admin implements InterfaceUserFunction{
     private int id;

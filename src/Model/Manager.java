@@ -7,7 +7,7 @@ package Model;
 
 /**
  *
- * @author CoffeeShop
+ * @author Juan Nathaniel
  */
 public class Manager extends Admin{
     private int idManager;

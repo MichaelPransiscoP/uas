@@ -7,11 +7,15 @@ package View;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.net.URL;
 import javax.swing.*;
 
 /**
  *
- * @author CoffeeShop
+ * @author Juan Nathaniel
  */
 public class LandingPage extends JFrame {
 
