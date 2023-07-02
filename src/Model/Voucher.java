@@ -7,7 +7,7 @@ package Model;
 
 /**
  *
- * @author Juan Nathaniel
+ * @author CoffeeShop
  */
 public class Voucher {
     private int id;

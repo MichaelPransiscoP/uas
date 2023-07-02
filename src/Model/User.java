@@ -7,7 +7,7 @@ package Model;
 
 /**
  *
- * @author Juan Nathaniel
+ * @author CoffeeShop
  */
 public abstract class User {
     private int id;

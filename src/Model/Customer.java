@@ -7,7 +7,7 @@ package Model;
 
 /**
  *
- * @author Juan Nathaniel
+ * @author CoffeeShop
  */
 public class Customer implements InterfaceUserFunction{
     private int id;
