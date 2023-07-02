@@ -7,7 +7,7 @@ package Model;
 
 /**
  *
- * @author Juan Nathaniel
+ * @author CoffeeShop
  */
 public enum EnumCheckItem {
     AVAIBLE, NOTAVAIBLE

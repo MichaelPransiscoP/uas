@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 
 /**
  *
- * @author Juan Nathaniel
+ * @author CoffeeShop
  */
 public class Login {
     JFrame frame = new JFrame();
