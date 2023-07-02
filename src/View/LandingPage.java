@@ -11,7 +11,7 @@ import javax.swing.*;
 
 /**
  *
- * @author Juan Nathaniel
+ * @author CoffeeShop
  */
 public class LandingPage extends JFrame {
 

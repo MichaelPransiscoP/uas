@@ -7,7 +7,7 @@ package Controller;
 
 /**
  *
- * @author Juan Nathaniel
+ * @author CoffeeShop
  */
 public class CustomerFunction {
     void iniFungsi(){
