@@ -9,7 +9,7 @@ package Model;
  *
  * @author CoffeeShop
  */
-public class Admin implements InterfaceUserFunction{
+public class Admin extends User implements InterfaceUserFunction{
     private int id;
     private String cabang;
 
