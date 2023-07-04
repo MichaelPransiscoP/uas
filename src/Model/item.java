@@ -9,7 +9,7 @@ package Model;
  *
  * @author Juan Nathaniel
  */
-public class item {
+public class Item {
     private int id;
     private String name;
     private String desc;
