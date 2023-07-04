@@ -7,6 +7,9 @@ package View;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -24,6 +27,7 @@ public class MainMenu extends JFrame {
     public MainMenu() {
         this.setTitle("Landing Page");
 
+        JFrame frame = this;
         JPanel panel = new JPanel();
         panel.setBounds(0, 0, 650, 950);
         panel.setBackground(Color.gray);
@@ -62,8 +66,15 @@ public class MainMenu extends JFrame {
         JButton store = new JButton("Pilih Lokasi Store");
         store.setFont(new Font("Arial", Font.PLAIN, 23));
         store.setBounds(20, 270, 250, 70);
+        // Button diklik, pindah page ke pilihstorepage
+        store.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                frame.setVisible(false);
+                new PilihStorePage();
+            }
+        });
         panel.add(store);
-        
+
         //Footer
         JLabel footer = new JLabel("                         Kofi By MJME             Whatsapp CS Kofi : 0817-1717-1717");
         footer.setFont(new Font("Arial", Font.BOLD, 15));
