@@ -5,18 +5,16 @@
  */
 package Model;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author CoffeeShop
  */
 public class Store {
     private int id;
+    private int idDetailTransaction;
     private String cabang;
-    private String storeCabang;
+    private String deskripsi;
     private double income;
-    private ArrayList<Item> listMenu;
 
     public int getId() {
         return id;
@@ -24,6 +22,14 @@ public class Store {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getIdDetailTransaction() {
+        return idDetailTransaction;
+    }
+
+    public void setIdDetailTransaction(int idDetailTransaction) {
+        this.id = idDetailTransaction;
     }
 
     public String getCabang() {
@@ -34,12 +40,12 @@ public class Store {
         this.cabang = cabang;
     }
 
-    public String getStoreCabang() {
-        return storeCabang;
+    public String getDeskripsi() {
+        return deskripsi;
     }
 
-    public void setStoreCabang(String storeCabang) {
-        this.storeCabang = storeCabang;
+    public void setDeskripsi(String deskripsi) {
+        this.deskripsi = deskripsi;
     }
 
     public double getIncome() {
@@ -48,14 +54,6 @@ public class Store {
 
     public void setIncome(double income) {
         this.income = income;
-    }
-
-    public ArrayList<Item> getListMenu() {
-        return listMenu;
-    }
-
-    public void setListMenu(ArrayList<Item> listMenu) {
-        this.listMenu = listMenu;
     }
     
     
