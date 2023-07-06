@@ -11,4 +11,8 @@ package Model;
  */
 public interface InterfaceUserFunction {
     void viewVoucher();
+    
+    User getUser();
+    
+    void setUser(User user);
 }

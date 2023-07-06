@@ -11,14 +11,17 @@ import Model.User;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author CoffeeShop
  */
 public class CustomerFunction {
+
     static DatabaseHandler conn = new DatabaseHandler();
-    // SELECT WHERE
+
+    // SELECT WHERE 
     public static Customer getCustomer(String email) {
         conn.connect();
         String query = "SELECT * FROM customer WHERE email='" + email + "'";
