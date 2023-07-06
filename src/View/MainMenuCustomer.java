@@ -22,9 +22,9 @@ import Model.Customer;
  */
 //ini menu setelah login/register (setelah LandingPage.java)
 //Tambahin button button disini
-public class MainMenu extends JFrame {
+public class MainMenuCustomer extends JFrame {
 
-    public MainMenu() {
+    public MainMenuCustomer() {
         this.setTitle("Landing Page");
 
         JFrame frame = this;
@@ -32,9 +32,8 @@ public class MainMenu extends JFrame {
         panel.setBounds(0, 0, 650, 950);
         panel.setBackground(Color.gray);
         //
-
-        Customer cs;
-        cs = Controller.CustomerFunction.getCustomer("micel@gmail.com");
+        Customer c = new Customer();
+        Customer cs = (Customer)c.getUser();
         //profile
         JButton profil = new JButton(cs.getUsername());
         profil.setFont(new Font("Arial", Font.BOLD, 11));
@@ -94,6 +93,6 @@ public class MainMenu extends JFrame {
     }
 
     public static void main(String[] args) {
-        new MainMenu();
+        new MainMenuCustomer();
     }
 }
