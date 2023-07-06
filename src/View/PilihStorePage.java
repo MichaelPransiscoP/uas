@@ -2,6 +2,8 @@ package View;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -16,6 +18,7 @@ public class PilihStorePage extends JFrame{
     public PilihStorePage(){
         this.setTitle("Pilih Lokasi Store");
         
+        JFrame frame = this;
         JPanel panel = new JPanel();
         panel.setBounds(0, 0, 650, 950);
         panel.setBackground(Color.gray);
@@ -32,6 +35,12 @@ public class PilihStorePage extends JFrame{
             JButton pilihcabang = new JButton("Pilih Cabang Ini");
             pilihcabang.setFont(new Font("Arial", Font.PLAIN, 14));
             pilihcabang.setBounds(450, 90*i + 20, 150, 50);
+            pilihcabang.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                frame.setVisible(false);
+                // new OrderMenuPage(stores.get(i))
+            }
+        });
             panel.add(pilihcabang);
         }
 
