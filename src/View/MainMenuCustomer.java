@@ -15,6 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import Model.Customer;
+import Model.SingletonUserManager;
 
 /**
  *
@@ -32,8 +33,7 @@ public class MainMenuCustomer extends JFrame {
         panel.setBounds(0, 0, 650, 950);
         panel.setBackground(Color.gray);
         //
-        Customer c = new Customer();
-        Customer cs = (Customer)c.getUser();
+        Customer cs = (Customer)SingletonUserManager.getInstance().getUser();
         //profile
         JButton profil = new JButton(cs.getUsername());
         profil.setFont(new Font("Arial", Font.BOLD, 11));

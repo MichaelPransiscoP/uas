@@ -89,7 +89,7 @@ public class Login extends JFrame implements ActionListener {
         loginButton.setFont(new Font("Arial", Font.PLAIN, 20));
         loginButton.setBounds(255, 320, 190, 40);
         panel.add(loginButton);
-
+        //--
         loginButton.addActionListener(this);
         //
         //copyright
@@ -112,6 +112,7 @@ public class Login extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        //Check data input user dengan database
         User resultUser = GlobalFunction.checkEmailPassLogin(String.valueOf(inputEmail.getText()), String.valueOf(inputPass.getText()));
         if (resultUser instanceof Customer) {
             this.setVisible(false);

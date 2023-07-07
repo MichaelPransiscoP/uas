@@ -9,6 +9,7 @@ import static Controller.CustomerFunction.conn;
 import Model.Customer;
 import Model.Admin;
 import Model.EnumMember;
+import Model.SingletonUserManager;
 import Model.User;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -40,7 +41,7 @@ public class GlobalFunction {
                         adm.setEmail(rs.getString("email"));
                         adm.setCabang(rs.getInt("idStore"));
                         //
-                        adm.setUser(adm);
+                        SingletonUserManager.getInstance().setUser(adm);
                         return (adm);
                     } else if (nameQuery.equals("custo")) {
                         Customer cust = new Customer();
@@ -53,7 +54,7 @@ public class GlobalFunction {
                         cust.setMember(EnumMember.valueOf(EnumMember.class, rs.getString("member").toUpperCase()));
                         cust.setSaldo(rs.getInt("saldo"));
                         //
-                        cust.setUser(cust);
+                        SingletonUserManager.getInstance().setUser(cust);
                         return (cust);
                     }
                 }
