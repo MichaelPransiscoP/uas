@@ -34,17 +34,4 @@ public class Admin extends User implements InterfaceUserFunction {
     public void viewVoucher() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-    private static Admin admin;
-
-    @Override
-    public User getUser() {
-        return admin;
-    }
-
-    @Override
-    public void setUser(User adm) {
-        admin = (Admin) adm;
-    }
-
 }

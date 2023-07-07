@@ -73,17 +73,4 @@ public class Customer extends User implements InterfaceUserFunction {
     public void viewVoucher() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-    private static Customer cust;
-
-    @Override
-    public User getUser() {
-        return (Customer)cust;
-    }
-    
-    @Override
-    public void setUser(User customer){
-         cust = (Customer)customer;
-    }
-
 }
