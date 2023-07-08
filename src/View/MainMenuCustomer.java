@@ -26,7 +26,7 @@ import Model.SingletonUserManager;
 public class MainMenuCustomer extends JFrame {
 
     public MainMenuCustomer() {
-        this.setTitle("Landing Page");
+        this.setTitle("Main Menu Customer");
 
         JFrame frame = this;
         JPanel panel = new JPanel();
@@ -67,6 +67,7 @@ public class MainMenuCustomer extends JFrame {
         store.setBounds(20, 270, 250, 70);
         // Button diklik, pindah page ke pilihstorepage
         store.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e){
                 frame.setVisible(false);
                 new PilihStorePage();

@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
  * INI FUNCTION YANG ADMIN SAMA CUSTOMER BISA MAKE
  */
 public class GlobalFunction {
-
+    //Function Login
     public static User checkEmailPassLogin(String email, String pass) {
         conn.connect();
         try {
@@ -31,8 +31,6 @@ public class GlobalFunction {
             for (int i = 1; i <= 2; i++) {
                 ResultSet rs = stmt.executeQuery(query);
                 while (rs.next()) {
-                    System.out.println(i);
-                    System.out.println();
                     if (nameQuery.equals("admi")) {
                         Admin adm = new Admin();
                         adm.setId(rs.getInt("id"));
