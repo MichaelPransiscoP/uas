@@ -50,6 +50,13 @@ public class LandingPage extends JFrame {
         register.setFont(new Font("Arial", Font.BOLD, 16));
         register.setBounds(100, 640, 400, 50);
         panel.add(register);
+        register.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.setVisible(false);
+                new Register();
+            }
+        });
         
         //Login
         JButton login = new JButton("Login");

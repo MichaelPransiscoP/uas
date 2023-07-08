@@ -29,6 +29,14 @@ public class Customer extends User implements InterfaceUserFunction {
         this.saldo = saldo;
     }
 
+    public Customer(String username, String password, String email, String address, EnumMember enumMember, String noHp, int saldo) {
+        super(username, password, email);
+        this.address= address;
+        this.member = enumMember;
+        this.noHp = noHp; 
+        this.saldo = saldo;
+    }
+
     public int getId() {
         return id;
     }
