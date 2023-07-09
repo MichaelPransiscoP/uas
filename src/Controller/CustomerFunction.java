@@ -15,6 +15,8 @@ import javax.swing.JOptionPane;
 import Model.EnumMember;
 import Model.SingletonUserManager;
 import java.sql.PreparedStatement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -39,24 +41,41 @@ public class CustomerFunction {
                 cust.setEmail(rs.getString("email"));
                 cust.setAddress(rs.getString("address"));
                 cust.setNoHp(rs.getString("noHp"));
-                cust.setMember(EnumMember.valueOf(EnumMember.class, rs.getString("member").toUpperCase()));
+                System.out.println("ini unamenya " + cust.getUsername());
+                String mem = rs.getString("member");
+                System.out.println("ini apa" + mem);
+                cust.setMember(EnumMember.valueOf(mem));
                 cust.setSaldo(rs.getInt("saldo"));
+                return cust;
             }
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
         }
-        return (cust);
+
+        return cust;
     }
 
     public static boolean register(String username, String password, String email, String address, String noHp) {
         conn.connect();
-        
-        Customer cust = getCustomer(email);
-        
-        if (cust.getEmail().equals(email)) {
+
+        String sql = "SELECT COUNT(*) AS count FROM customer WHERE email = ?";
+        PreparedStatement statement;
+        int count = 0;
+        try {
+            statement = conn.con.prepareStatement(sql);
+            statement.setString(1, email);
+            ResultSet resultSet = statement.executeQuery();
+            resultSet.next();
+            count = resultSet.getInt("count");
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerFunction.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        if (count > 0) {
+            System.out.println("aha");
             return false;
-        }else{
+        } else {
             String query = "Insert INTO customer (username,password,email,address,nohp, saldo) VALUES(?,?,?,?,?,?)";
             try {
                 PreparedStatement stmt = conn.con.prepareStatement(query);
@@ -70,13 +89,14 @@ public class CustomerFunction {
                 stmt.executeUpdate();
                 Customer cs = new Customer(username, password, email, address, EnumMember.ISNOTMEMBER, noHp, 100000);
                 SingletonUserManager.getInstance().setUser(cs);
-                return true;
+                
+                return (true);
             } catch (SQLException e) {
                 e.printStackTrace();
-                return false;
+                return (false);
             }
-        }        
-        
+        }
+
     }
 
 }

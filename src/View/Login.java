@@ -19,7 +19,8 @@ import Controller.GlobalFunction;
 import Model.Admin;
 import Model.Customer;
 import Model.User;
-
+import Controller.CustomerFunction;
+import static Controller.CustomerFunction.getCustomer;
 /**
  *
  * @author CoffeeShop
@@ -30,7 +31,8 @@ public class Login extends JFrame implements ActionListener {
     JButton back;
     JFrame frame = this;
     public Login() {
-        this.setTitle("Landing Page");
+        Customer cs = getCustomer("micel@gmail.com");
+        this.setTitle("Landing Page"+cs.getMember()+cs.getUsername());
 
         JPanel panel = new JPanel();
         panel.setBounds(0, 0, 650, 950);
@@ -122,8 +124,8 @@ public class Login extends JFrame implements ActionListener {
             //Menu admin siniiii
         }
     }
-//
-//    public static void main(String[] args) {
-//        new Login();
-//    }
+
+    public static void main(String[] args) {
+        new Login();
+    }
 }

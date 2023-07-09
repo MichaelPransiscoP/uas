@@ -164,7 +164,7 @@ public class Register extends JFrame implements ActionListener {
             if (cs) {
                 JOptionPane.showMessageDialog(this, "Registration successful.", "Success", JOptionPane.INFORMATION_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(this, "Registration failed. Email uda ada!", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Registration failed. Email sudah ada!", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
 
