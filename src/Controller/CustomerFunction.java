@@ -76,7 +76,7 @@ public class CustomerFunction {
             System.out.println("aha");
             return false;
         } else {
-            String query = "Insert INTO customer (username,password,email,address,nohp, saldo) VALUES(?,?,?,?,?,?)";
+            String query = "Insert INTO customer (username,password,email,address,nohp, member, saldo) VALUES(?,?,?,?,?,?,?)";
             try {
                 PreparedStatement stmt = conn.con.prepareStatement(query);
                 stmt.setString(1, username);
@@ -84,7 +84,9 @@ public class CustomerFunction {
                 stmt.setString(3, email);
                 stmt.setString(4, address);
                 stmt.setString(5, noHp);
-                stmt.setInt(6, 100000);
+                EnumMember enumIn = EnumMember.ISNOTMEMBER;
+                stmt.setString(6, enumIn.name());
+                stmt.setInt(7, 100000);
 
                 stmt.executeUpdate();
                 Customer cs = new Customer(username, password, email, address, EnumMember.ISNOTMEMBER, noHp, 100000);
