@@ -91,7 +91,7 @@ public class CustomerFunction {
                 stmt.executeUpdate();
                 Customer cs = new Customer(username, password, email, address, EnumMember.ISNOTMEMBER, noHp, 100000);
                 SingletonUserManager.getInstance().setUser(cs);
-                
+
                 return (true);
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -99,6 +99,21 @@ public class CustomerFunction {
             }
         }
 
+    }
+
+    // UPDATE Customer
+    public static boolean updateCustomer(Customer cust, String addressBaru) {
+        conn.connect();
+        String query = "UPDATE customer SET address='" + addressBaru + "' "
+                + "WHERE email='" + cust.getEmail() + "'";
+        try {
+            Statement stmt = conn.con.createStatement();
+            stmt.executeUpdate(query);
+            return (true);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return (false);
+        }
     }
 
 }
