@@ -115,5 +115,19 @@ public class CustomerFunction {
             return (false);
         }
     }
+    
+    public static boolean updateMembership(Customer cust){
+        conn.connect();
+        String query = "UPDATE customer SET member='" + EnumMember.ISMEMBER + "' "
+                + "WHERE email='" + cust.getEmail() + "'";
+         try {
+            Statement stmt = conn.con.createStatement();
+            stmt.executeUpdate(query);
+            return (true);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return (false);
+        }
+    }
 
 }
