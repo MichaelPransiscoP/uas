@@ -33,7 +33,7 @@ public class Register extends JFrame implements ActionListener {
     JFrame frame = this;
 
     public Register() {
-        this.setTitle("Landing Page");
+        this.setTitle("Register");
 
         JPanel panel = new JPanel();
         panel.setBounds(0, 0, 650, 950);
@@ -169,9 +169,4 @@ public class Register extends JFrame implements ActionListener {
         }
 
     }
-    public static void main(String[] args) {
-        new Register();
-    }
-    
-    
 }

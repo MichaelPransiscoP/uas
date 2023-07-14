@@ -75,8 +75,7 @@ public class CustomerFunction {
                 e.printStackTrace();
                 return false;
             }
-        }        
-        
+        }          
     }
-
+    
 }
