@@ -30,7 +30,6 @@ import javax.swing.JTextField;
  */
 public class JoinMembershipCustomer extends JFrame implements ActionListener {
 
-    JButton join2;
 
     JButton join;
 
