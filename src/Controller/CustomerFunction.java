@@ -13,8 +13,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import Model.EnumMember;
+import Model.Item;
 import Model.SingletonUserManager;
+import Model.Store;
+import Model.Voucher;
+import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -115,14 +120,35 @@ public class CustomerFunction {
             return (false);
         }
     }
-    
-    public static boolean updateMembership(Customer cust){
+
+    public static boolean updateMembership(Customer cust) {
         conn.connect();
         String query = "UPDATE customer SET member='" + EnumMember.ISMEMBER + "' "
                 + "WHERE email='" + cust.getEmail() + "'";
-         try {
+        try {
             Statement stmt = conn.con.createStatement();
             stmt.executeUpdate(query);
+            return (true);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return (false);
+        }
+    }
+
+    // INSERT
+    public static boolean insertHistoryTransaction(int idCust, int idStore, int idItem, int idVoucher) {
+        conn.connect();
+        String query = "INSERT INTO transaction (idCustomer, idStore, idItem, idVoucher, transactionDate) VALUES(?,?,?,?,?)";
+        Date date = Date.valueOf(LocalDate.now());
+        //java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+        try {
+            PreparedStatement stmt = conn.con.prepareStatement(query);
+            stmt.setInt(1, idCust);
+            stmt.setInt(2, idStore);
+            stmt.setInt(3, idItem);
+            stmt.setInt(4, idVoucher);
+            stmt.setDate(5, date);
+            stmt.executeUpdate();
             return (true);
         } catch (SQLException e) {
             e.printStackTrace();
