@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.Item;
 import Model.Store;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -28,5 +29,26 @@ public class StoreFunction {
             e.printStackTrace();
         }
         return stores;
+    }
+    
+    public static ArrayList<Item> getItem(){
+        conn.connect();
+        String query = "SELECT * FROM item";
+        ArrayList<Item> items = new ArrayList<Item>();
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()){
+                Item temp = new Item();
+                temp.setId(rs.getInt("id"));
+                temp.setName(rs.getString("name"));
+                temp.setDesc(rs.getString("desc"));
+                temp.setPrice(rs.getInt("price"));
+                items.add(temp);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return items;
     }
 }

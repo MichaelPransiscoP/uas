@@ -9,9 +9,10 @@ package Model;
  *
  * @author CoffeeShop
  */
-public class Admin extends User implements InterfaceUserFunction{
+public class Admin extends User implements InterfaceUserFunction {
+
     private int id;
-    private String cabang;
+    private int idCabang;
 
     public int getId() {
         return id;
@@ -21,18 +22,16 @@ public class Admin extends User implements InterfaceUserFunction{
         this.id = id;
     }
 
-    public String getCabang() {
-        return cabang;
+    public int getCabang() {
+        return idCabang;
     }
 
-    public void setCabang(String cabang) {
-        this.cabang = cabang;
+    public void setCabang(int idCabang) {
+        this.idCabang = idCabang;
     }
 
     @Override
     public void viewVoucher() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
 }

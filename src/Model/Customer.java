@@ -27,8 +27,16 @@ public class Customer extends User implements InterfaceUserFunction {
         this.noHp = noHp;
         this.member = member;
         this.saldo = saldo;
-    } 
-    
+    }
+
+    public Customer(String username, String password, String email, String address, EnumMember enumMember, String noHp, int saldo) {
+        super(username, password, email);
+        this.address= address;
+        this.member = enumMember;
+        this.noHp = noHp; 
+        this.saldo = saldo;
+    }
+
     public int getId() {
         return id;
     }
@@ -73,5 +81,4 @@ public class Customer extends User implements InterfaceUserFunction {
     public void viewVoucher() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
 }

@@ -7,7 +7,7 @@ package Model;
 
 /**
  *
- * @author CoffeeShop
+ * @author Juan Nathaniel
  */
 public class Item {
     private int id;
@@ -15,10 +15,10 @@ public class Item {
     private String desc;
     private int price;
     private EnumCheckItem availability;
-    
+
     public int getId() {
         return id;
-}
+    }
 
     public void setId(int id) {
         this.id = id;
@@ -55,6 +55,4 @@ public class Item {
     public void setAvailability(EnumCheckItem availability) {
         this.availability = availability;
     }
-    
-    
 }
