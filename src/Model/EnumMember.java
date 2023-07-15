@@ -9,6 +9,6 @@ package Model;
  *
  * @author CoffeeShop
  */
-public enum EnumCheckItem {
-    AVAIBLE, NOTAVAIBLE
+public  enum EnumMember {
+    ISMEMBER, ISNOTMEMBER
 }

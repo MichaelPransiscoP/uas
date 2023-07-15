@@ -55,6 +55,4 @@ public class Item {
     public void setAvailability(EnumCheckItem availability) {
         this.availability = availability;
     }
-    
-    
 }

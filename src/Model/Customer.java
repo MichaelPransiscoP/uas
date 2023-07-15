@@ -7,12 +7,35 @@ package Model;
 
 /**
  *
- * @author Juan Nathaniel
+ * @author CoffeeShop
  */
-public class Customer implements InterfaceUserFunction{
+public class Customer extends User implements InterfaceUserFunction {
+
     private int id;
     private String address;
     private String noHp;
+    private EnumMember member;
+    private int saldo;
+
+    public Customer() {
+    }
+
+    public Customer(int id, String address, String noHp, EnumMember member, int saldo, String username, String password, String email) {
+        super(id, username, password, email);
+        this.id = id;
+        this.address = address;
+        this.noHp = noHp;
+        this.member = member;
+        this.saldo = saldo;
+    }
+
+    public Customer(String username, String password, String email, String address, EnumMember enumMember, String noHp, int saldo) {
+        super(username, password, email);
+        this.address= address;
+        this.member = enumMember;
+        this.noHp = noHp; 
+        this.saldo = saldo;
+    }
 
     public int getId() {
         return id;
@@ -38,10 +61,24 @@ public class Customer implements InterfaceUserFunction{
         this.noHp = noHp;
     }
 
+    public EnumMember getMember() {
+        return member;
+    }
+
+    public void setMember(EnumMember member) {
+        this.member = member;
+    }
+
+    public int getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(int saldo) {
+        this.saldo = saldo;
+    }
+
     @Override
     public void viewVoucher() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
 }
