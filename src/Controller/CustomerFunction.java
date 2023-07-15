@@ -14,7 +14,10 @@ import java.sql.Statement;
 import javax.swing.JOptionPane;
 import Model.EnumMember;
 import Model.SingletonUserManager;
+import Model.Store;
+
 import java.sql.PreparedStatement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -54,6 +57,31 @@ public class CustomerFunction {
         }
 
         return cust;
+    }
+
+    public static ArrayList<Customer> getCustomersList(){
+        conn.connect();
+        String query = "SELECT * FROM customer";
+        ArrayList<Customer> custs = new ArrayList<Customer>();
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()){
+                Customer temp = new Customer();
+                temp.setId(rs.getInt("id"));
+                temp.setUsername(rs.getString("username"));
+                temp.setPassword(rs.getString("password"));
+                temp.setEmail(rs.getString("email"));
+                temp.setAddress(rs.getString("address"));
+                temp.setNoHp(rs.getString("noHp"));
+                temp.setMember(EnumMember.valueOf(rs.getString("member")));
+                temp.setSaldo(rs.getInt("saldo"));
+                custs.add(temp);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return custs;
     }
 
     public static boolean register(String username, String password, String email, String address, String noHp) {
