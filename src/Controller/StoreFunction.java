@@ -10,6 +10,8 @@ import java.util.ArrayList;
 
 public class StoreFunction {
     static DatabaseHandler conn = new DatabaseHandler();
+    
+    //get all stores
     public static ArrayList<Store> getStores(){
         conn.connect();
         String query = "SELECT * FROM store";

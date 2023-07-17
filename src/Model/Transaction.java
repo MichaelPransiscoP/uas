@@ -13,6 +13,10 @@ import java.sql.Date;
  */
 public class Transaction {
     private int id;
+    private int idCustomer;
+    private int idStore;
+    private int idItem;
+    private int idVoucher;
     private Date date;
     private int itemQuantity;
 
@@ -38,6 +42,38 @@ public class Transaction {
 
     public void setItemQuantity(int itemQuantity) {
         this.itemQuantity = itemQuantity;
+    }
+
+    public int getIdCustomer() {
+        return idCustomer;
+    }
+
+    public void setIdCustomer(int idCustomer) {
+        this.idCustomer = idCustomer;
+    }
+
+    public int getIdStore() {
+        return idStore;
+    }
+
+    public void setIdStore(int idStore) {
+        this.idStore = idStore;
+    }
+
+    public int getIdItem() {
+        return idItem;
+    }
+
+    public void setIdItem(int idItem) {
+        this.idItem = idItem;
+    }
+
+    public int getIdVoucher() {
+        return idVoucher;
+    }
+
+    public void setIdVoucher(int idVoucher) {
+        this.idVoucher = idVoucher;
     }
 
     

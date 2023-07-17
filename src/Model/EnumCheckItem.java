@@ -10,5 +10,5 @@ package Model;
  * @author CoffeeShop
  */
 public enum EnumCheckItem {
-    AVAIBLE, NOTAVAIBLE
+    AVAILABLE, NOTAVAILABLE
 }
