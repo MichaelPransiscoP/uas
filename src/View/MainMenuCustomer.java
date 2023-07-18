@@ -17,6 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import Model.Customer;
 import Model.SingletonUserManager;
+import javax.swing.JDialog;
 
 /**
  *
@@ -28,7 +29,7 @@ public class MainMenuCustomer extends JFrame {
     
     public MainMenuCustomer() {
         this.setTitle("Main Menu Customer");
-        
+        this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         JFrame frame = this;
         JPanel panel = new JPanel();
         panel.setBounds(0, 0, 650, 950);

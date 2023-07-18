@@ -36,6 +36,7 @@ public class MenuOrder extends JFrame implements ActionListener {
     JFrame frame = this;
 
     public MenuOrder() {
+        
         ArrayList<Item> items = Controller.StoreFunction.getItem();
         ArrayList<Item> customerItems = new ArrayList<>();
 

@@ -21,6 +21,7 @@ import Model.Customer;
 import Model.User;
 import Controller.CustomerFunction;
 import static Controller.CustomerFunction.getCustomer;
+import javax.swing.JDialog;
 /**
  *
  * @author CoffeeShop
@@ -32,6 +33,7 @@ public class Login extends JFrame implements ActionListener {
     JFrame frame = this;
     public Login() {
         Customer cs = getCustomer("micel@gmail.com");
+        this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         this.setTitle("Landing Page"+cs.getMember()+cs.getUsername());
 
         JPanel panel = new JPanel();
@@ -121,6 +123,7 @@ public class Login extends JFrame implements ActionListener {
             new MainMenuCustomer();
         } else if (resultUser instanceof Admin) {
             this.setVisible(false);
+            
             //Menu admin siniiii
         }
     }
