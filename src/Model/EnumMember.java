@@ -9,6 +9,6 @@ package Model;
  *
  * @author CoffeeShop
  */
-public enum EnumMember {
+public  enum EnumMember {
     ISMEMBER, ISNOTMEMBER
 }

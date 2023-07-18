@@ -5,6 +5,7 @@
  */
 package View;
 
+import static Controller.CustomerFunction.getCustomer;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -16,6 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import Model.Customer;
 import Model.SingletonUserManager;
+import javax.swing.JDialog;
 
 /**
  *
@@ -24,21 +26,28 @@ import Model.SingletonUserManager;
 //ini menu setelah login/register (setelah LandingPage.java)
 //Tambahin button button disini
 public class MainMenuCustomer extends JFrame {
-
+    
     public MainMenuCustomer() {
-        this.setTitle("Landing Page");
-
+        this.setTitle("Main Menu Customer");
+        this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         JFrame frame = this;
         JPanel panel = new JPanel();
         panel.setBounds(0, 0, 650, 950);
         panel.setBackground(Color.gray);
         //
-        Customer cs = (Customer)SingletonUserManager.getInstance().getUser();
+        Customer cs = (Customer) SingletonUserManager.getInstance().getUser();
         //profile
         JButton profil = new JButton(cs.getUsername());
         profil.setFont(new Font("Arial", Font.BOLD, 11));
         profil.setBounds(20, 20, 70, 70);
         panel.add(profil);
+        profil.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                frame.setVisible(false);
+                new PanelProfile();
+            }            
+        });
 
         //Text
         JLabel selamatdatang = new JLabel("<html>Welcome to Kofi,<br>" + cs.getUsername() + "</html>");
@@ -55,19 +64,20 @@ public class MainMenuCustomer extends JFrame {
         panel.add(tagline);
 
         //Saldo
-        JLabel saldo = new JLabel("<html>Saldo mu : <br> Rp "+cs.getSaldo()+"</html>");
+        JLabel saldo = new JLabel("<html>Saldo mu : <br> Rp " + cs.getSaldo() + "</html>");
         saldo.setFont(new Font("Arial", Font.PLAIN, 19));
         saldo.setForeground(Color.white);
-        saldo.setBounds(450, 190,150, 70);
+        saldo.setBounds(450, 190, 150, 70);
         panel.add(saldo);
-        
+
         //Pilih Lokasi Store
         JButton store = new JButton("Pilih Lokasi Store");
         store.setFont(new Font("Arial", Font.PLAIN, 23));
         store.setBounds(20, 270, 250, 70);
         // Button diklik, pindah page ke pilihstorepage
         store.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e){
+            @Override
+            public void actionPerformed(ActionEvent e) {
                 frame.setVisible(false);
                 new PilihStorePage();
             }
@@ -91,8 +101,7 @@ public class MainMenuCustomer extends JFrame {
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
-
-    public static void main(String[] args) {
-        new MainMenuCustomer();
-    }
+//    public static void main(String[] args) {
+//        new MainMenuCustomer();
+//    }
 }

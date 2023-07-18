@@ -10,10 +10,12 @@ import Model.Customer;
 import Model.Admin;
 import Model.EnumMember;
 import Model.SingletonUserManager;
+import Model.Transaction;
 import Model.User;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,7 +23,7 @@ import javax.swing.JOptionPane;
  * INI FUNCTION YANG ADMIN SAMA CUSTOMER BISA MAKE
  */
 public class GlobalFunction {
-
+    //Function Login
     public static User checkEmailPassLogin(String email, String pass) {
         conn.connect();
         try {
@@ -31,8 +33,6 @@ public class GlobalFunction {
             for (int i = 1; i <= 2; i++) {
                 ResultSet rs = stmt.executeQuery(query);
                 while (rs.next()) {
-                    System.out.println(i);
-                    System.out.println();
                     if (nameQuery.equals("admi")) {
                         Admin adm = new Admin();
                         adm.setId(rs.getInt("id"));
@@ -70,5 +70,27 @@ public class GlobalFunction {
                 "Error Message",
                 JOptionPane.ERROR_MESSAGE);
         return null;
+    }
+    public static ArrayList<Transaction> getHistoryTransaction(){
+        conn.connect();
+        String query = "SELECT * FROM transaction";
+        ArrayList<Transaction> trans = new ArrayList<Transaction>();
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()){
+                Transaction temp = new Transaction();
+                temp.setId(rs.getInt("id"));
+                temp.setIdCustomer(rs.getInt("idCustomer"));
+                temp.setIdStore(rs.getInt("idStore"));
+                temp.setIdItem(rs.getInt("idItem"));
+                temp.setIdVoucher(rs.getInt("idVoucher"));
+                temp.setDate(rs.getDate("transactionDate"));
+                trans.add(temp);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return trans;
     }
 }

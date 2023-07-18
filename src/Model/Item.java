@@ -7,14 +7,14 @@ package Model;
 
 /**
  *
- * @author CoffeeShop
+ * @author Juan Nathaniel
  */
-public class Voucher {
+public class Item {
     private int id;
     private String name;
     private String desc;
-    private double discount;
-    private double condition;
+    private int price;
+    private EnumCheckItem availability;
 
     public int getId() {
         return id;
@@ -40,21 +40,19 @@ public class Voucher {
         this.desc = desc;
     }
 
-    public double getDiscount() {
-        return discount;
+    public int getPrice() {
+        return price;
     }
 
-    public void setDiscount(double discount) {
-        this.discount = discount;
+    public void setPrice(int price) {
+        this.price = price;
     }
 
-    public double getCondition() {
-        return condition;
+    public EnumCheckItem getAvailability() {
+        return availability;
     }
 
-    public void setCondition(double condition) {
-        this.condition = condition;
+    public void setAvailability(EnumCheckItem availability) {
+        this.availability = availability;
     }
-    
-    
 }
