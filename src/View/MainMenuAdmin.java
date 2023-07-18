@@ -70,7 +70,7 @@ public class MainMenuAdmin extends JFrame {
         voucherButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                new EditVoucher();
             }
         });
         panel.add(voucherButton);
