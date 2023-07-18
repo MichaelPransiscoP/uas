@@ -5,12 +5,114 @@
  */
 package View;
 
-/**
- *
- * @author rapmonz
- */
-public class MainMenuAdmin {
-    public MainMenuAdmin(){
-        
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class MainMenuAdmin extends JFrame {
+
+    public MainMenuAdmin() {
+        this.setTitle("Main Menu Admin");
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        JFrame frame = this;
+        JPanel panel = new JPanel();
+        panel.setBounds(0, 0, 650, 950);
+        panel.setBackground(Color.gray);
+
+        JButton hapusUserButton = new JButton("Hapus User");
+        hapusUserButton.setFont(new Font("Arial", Font.PLAIN, 23));
+        hapusUserButton.setBounds(20, 20, 250, 70);
+        hapusUserButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            }
+        });
+        panel.add(hapusUserButton);
+
+        JButton addMenuButton = new JButton("Add Makanan/Minuman");
+        addMenuButton.setFont(new Font("Arial", Font.PLAIN, 23));
+        addMenuButton.setBounds(20, 100, 300, 70);
+        addMenuButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            }
+        });
+        panel.add(addMenuButton);
+
+        JButton tabListOrderButton = new JButton("Tab List Order/Process");
+        tabListOrderButton.setFont(new Font("Arial", Font.PLAIN, 23));
+        tabListOrderButton.setBounds(20, 180, 350, 70);
+        tabListOrderButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            }
+        });
+        panel.add(tabListOrderButton);
+
+        JButton managerButton = new JButton("Manager");
+        managerButton.setFont(new Font("Arial", Font.PLAIN, 23));
+        managerButton.setBounds(20, 260, 150, 70);
+        managerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            }
+        });
+        panel.add(managerButton);
+
+        JButton voucherButton = new JButton("Edit/Add Voucher (Manager)");
+        voucherButton.setFont(new Font("Arial", Font.PLAIN, 23));
+        voucherButton.setBounds(20, 340, 400, 70);
+        voucherButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+        panel.add(voucherButton);
+
+        JButton tambahStoreButton = new JButton("Tambah Lokasi Store (Manager)");
+        tambahStoreButton.setFont(new Font("Arial", Font.PLAIN, 23));
+        tambahStoreButton.setBounds(20, 420, 400, 70);
+        tambahStoreButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            }
+        });
+        panel.add(tambahStoreButton);
+
+        JButton rekapPenjualanButton = new JButton("Rekap Penjualan (Manager)");
+        rekapPenjualanButton.setFont(new Font("Arial", Font.PLAIN, 23));
+        rekapPenjualanButton.setBounds(20, 500, 350, 70);
+        rekapPenjualanButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            }
+        });
+        panel.add(rekapPenjualanButton);
+
+        JLabel footer = new JLabel("Kofi By MJME | Whatsapp CS Kofi : 0817-1717-1717");
+        footer.setFont(new Font("Arial", Font.BOLD, 15));
+        footer.setForeground(Color.white);
+        footer.setBackground(Color.DARK_GRAY);
+        footer.setOpaque(true);
+        footer.setBounds(0, 820, 610, 90);
+        panel.add(footer);
+
+        this.add(panel);
+        panel.setLayout(null);
+
+        this.setSize(610, 950);
+        this.setLayout(null);
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        new MainMenuAdmin();
     }
 }
