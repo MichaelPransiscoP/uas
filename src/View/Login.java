@@ -123,8 +123,7 @@ public class Login extends JFrame implements ActionListener {
             new MainMenuCustomer();
         } else if (resultUser instanceof Admin) {
             this.setVisible(false);
-            
-            //Menu admin siniiii
+            new MainMenuAdmin();
         }
     }
 
