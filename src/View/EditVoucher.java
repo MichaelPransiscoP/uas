@@ -24,7 +24,7 @@ public class EditVoucher extends JFrame implements ActionListener {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         Container c = getContentPane();
-        c.setLayout(new GridLayout(6, 2));
+        c.setLayout(new GridLayout(8, 2));
 
         JLabel lblId = new JLabel("Voucher ID:");
         tfId = new JTextField();
@@ -82,5 +82,4 @@ public class EditVoucher extends JFrame implements ActionListener {
         }
     }
 
- 
 }
