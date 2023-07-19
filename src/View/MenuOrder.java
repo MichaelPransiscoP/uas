@@ -18,6 +18,7 @@ import javax.swing.JTextField;
 import Controller.CustomerFunction;
 import Model.Customer;
 import Model.Item;
+import View.LandingPage;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -35,9 +36,9 @@ public class MenuOrder extends JFrame implements ActionListener {
     JButton back;
     JFrame frame = this;
 
-    public MenuOrder() {
+    public MenuOrder(int idStore) {
         
-        ArrayList<Item> items = Controller.StoreFunction.getItem();
+        ArrayList<Item> items = Controller.StoreFunction.getAvailItem(idStore);
         ArrayList<Item> customerItems = new ArrayList<>();
 
         this.setTitle("Order Menu");
@@ -71,7 +72,7 @@ public class MenuOrder extends JFrame implements ActionListener {
         panel.add(masuk2);
 
         int startY = 130;
-        int height = 85;
+        int height = 130;
 
         for (int i = 0; i < items.size(); i++) {
             JLabel menu = new JLabel(items.get(i).getName());
@@ -89,11 +90,11 @@ public class MenuOrder extends JFrame implements ActionListener {
             JLabel menudesc = new JLabel("<html>" + items.get(i).getDesc() + " <br><br><br><br><br></html>");
             menudesc.setFont(new Font("Arial", Font.PLAIN, 15));
             menudesc.setForeground(Color.white);
-            menudesc.setBounds(110, startY + 85 + (i * height), 300, height);
+            menudesc.setBounds(110, startY + 110 + (i * height), 300, height);
             panel.add(menudesc);
 
             JButton addButton = new JButton("Add");
-            addButton.setBounds(400, startY + 45 + (i * height), 100, 30);
+            addButton.setBounds(400, startY + 80 + (i * height), 100, 30);
             addButton.setFont(new Font("Arial", Font.PLAIN, 14));
             panel.add(addButton);
 
@@ -121,6 +122,6 @@ public class MenuOrder extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
-        new MenuOrder();
+        new MenuOrder(1);
     }
 }

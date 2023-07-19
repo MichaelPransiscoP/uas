@@ -55,6 +55,27 @@ public class StoreFunction {
         return items;
     }
     
+    public static ArrayList<Item> getAvailItem(int idStore){
+        conn.connect();
+        String query = "SELECT * FROM item JOIN detailitem ON item.id = detailitem.idItem WHERE detailitem.idStore = '" + idStore + "' AND detailitem.available = 'AVAILABLE';";
+        ArrayList<Item> items = new ArrayList<Item>();
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()){
+                Item temp = new Item();
+                temp.setId(rs.getInt("id"));
+                temp.setName(rs.getString("name"));
+                temp.setDesc(rs.getString("desc"));
+                temp.setPrice(rs.getInt("price"));
+                items.add(temp);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return items;
+    }
+    
     public static ArrayList<Voucher> getVoucher(){
         conn.connect();
         String query = "SELECT * FROM voucher";
