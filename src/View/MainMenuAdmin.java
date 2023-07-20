@@ -93,6 +93,8 @@ public class MainMenuAdmin extends JFrame {
         rekapPenjualanButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                new LihatRekapPenjualan();
             }
         });
         panel.add(rekapPenjualanButton);

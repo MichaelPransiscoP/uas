@@ -17,7 +17,6 @@ public class Item {
     private EnumCheckItem availability;
 
     public Item() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public Item(String name, String harga, String deskripsi, EnumCheckItem enumCheckItem) {

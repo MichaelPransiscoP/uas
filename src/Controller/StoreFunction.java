@@ -33,6 +33,29 @@ public class StoreFunction {
         }
         return stores;
     }
+
+    public static Store getStoreById(int id) {
+        conn.connect();
+        String query = "SELECT * FROM store WHERE id='" + id + "'";
+        Store stre = new Store();
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                stre.setId(rs.getInt("id"));
+                stre.setIdDetailTransaction(rs.getInt("idDetailTransaction"));
+                stre.setCabang(rs.getString("cabang"));
+                stre.setDeskripsi(rs.getString("deskripsi"));
+                stre.setIncome(rs.getDouble("income"));
+                return stre;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        return stre;
+    }
     
     public static ArrayList<Item> getItem(){
         conn.connect();
@@ -53,6 +76,26 @@ public class StoreFunction {
             e.printStackTrace();
         }
         return items;
+    }
+
+    public static Item getItemById(int id){
+        conn.connect();
+        String query = "SELECT * FROM item WHERE id=" + id;
+        Item item = new Item();
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()){
+                item.setId(rs.getInt("id"));
+                item.setName(rs.getString("name"));
+                item.setDesc(rs.getString("desc"));
+                item.setPrice(rs.getInt("price"));
+                return item;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
     
     public static ArrayList<Item> getAvailItem(int idStore){

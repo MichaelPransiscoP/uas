@@ -6,11 +6,14 @@ import Model.Item;
 import Model.EnumCheckItem;
 import Model.EnumMember;
 import Model.SingletonUserManager;
+import Model.Transaction;
+
 import java.sql.PreparedStatement;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -51,5 +54,28 @@ public class AdminFunction {
             e.printStackTrace();
             return (false);
         }
+    }
+
+    public static ArrayList<Transaction> getTransactionsList(){
+        conn.connect();
+        String query = "SELECT * FROM transaction";
+        ArrayList<Transaction> transactions = new ArrayList<Transaction>();
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()){
+                Transaction temp = new Transaction();
+                temp.setId(rs.getInt(1));
+                temp.setIdCustomer(rs.getInt(2));
+                temp.setIdStore(rs.getInt(3));
+                temp.setIdItem(rs.getInt(4));
+                temp.setIdVoucher(rs.getInt(5));
+                temp.setDate(rs.getDate(6));
+                transactions.add(temp);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return transactions;
     }
 }

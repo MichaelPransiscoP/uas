@@ -63,6 +63,35 @@ public class CustomerFunction {
         return cust;
     }
 
+    public static Customer getCustomerById(int id) {
+        conn.connect();
+        String query = "SELECT * FROM customer WHERE id='" + id + "'";
+        Customer cust = new Customer();
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                cust.setId(rs.getInt("id"));
+                cust.setUsername(rs.getString("username"));
+                cust.setPassword(rs.getString("password"));
+                cust.setEmail(rs.getString("email"));
+                cust.setAddress(rs.getString("address"));
+                cust.setNoHp(rs.getString("noHp"));
+                System.out.println("ini unamenya " + cust.getUsername());
+                String mem = rs.getString("member");
+                System.out.println("ini apa" + mem);
+                cust.setMember(EnumMember.valueOf(mem));
+                cust.setSaldo(rs.getInt("saldo"));
+                return cust;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        return cust;
+    }
+
     public static ArrayList<Customer> getCustomersList(){
         conn.connect();
         String query = "SELECT * FROM customer";
