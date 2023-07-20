@@ -35,7 +35,6 @@ public class Register extends JFrame implements ActionListener {
 
     public Register() {
         this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-        this.setTitle("Landing Page");
 
         JPanel panel = new JPanel();
         panel.setBounds(0, 0, 650, 950);

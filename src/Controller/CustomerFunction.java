@@ -130,7 +130,6 @@ public class CustomerFunction {
                 return (false);
             }
         }
-
     }
 
     // UPDATE Customer
