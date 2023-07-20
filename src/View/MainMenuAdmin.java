@@ -40,6 +40,8 @@ public class MainMenuAdmin extends JFrame {
         addMenuButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                new AddMakananMinuman();
             }
         });
         panel.add(addMenuButton);
