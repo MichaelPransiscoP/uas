@@ -10,6 +10,8 @@ import java.util.ArrayList;
 
 public class StoreFunction {
     static DatabaseHandler conn = new DatabaseHandler();
+    
+    //get all stores
     public static ArrayList<Store> getStores(){
         conn.connect();
         String query = "SELECT * FROM store";
@@ -35,6 +37,27 @@ public class StoreFunction {
     public static ArrayList<Item> getItem(){
         conn.connect();
         String query = "SELECT * FROM item";
+        ArrayList<Item> items = new ArrayList<Item>();
+        try {
+            Statement stmt = conn.con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()){
+                Item temp = new Item();
+                temp.setId(rs.getInt("id"));
+                temp.setName(rs.getString("name"));
+                temp.setDesc(rs.getString("desc"));
+                temp.setPrice(rs.getInt("price"));
+                items.add(temp);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return items;
+    }
+    
+    public static ArrayList<Item> getAvailItem(int idStore){
+        conn.connect();
+        String query = "SELECT * FROM item JOIN detailitem ON item.id = detailitem.idItem WHERE detailitem.idStore = '" + idStore + "' AND detailitem.available = 'AVAILABLE';";
         ArrayList<Item> items = new ArrayList<Item>();
         try {
             Statement stmt = conn.con.createStatement();

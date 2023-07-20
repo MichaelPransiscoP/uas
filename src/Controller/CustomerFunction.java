@@ -130,7 +130,6 @@ public class CustomerFunction {
                 return (false);
             }
         }
-
     }
 
     // UPDATE Customer
@@ -175,6 +174,22 @@ public class CustomerFunction {
             stmt.setInt(3, idItem);
             stmt.setInt(4, idVoucher);
             stmt.setDate(5, date);
+            stmt.executeUpdate();
+            return (true);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return (false);
+        }
+    }
+    
+    //insert detail history transaction
+    public static boolean insertDetailHistoryTransaction(int idTransaction, int itemQuantity) {
+        conn.connect();
+        String query = "INSERT INTO detailtransaction (idTransaction, itemQuantity) VALUES(?,?)";;
+        try {
+            PreparedStatement stmt = conn.con.prepareStatement(query);
+            stmt.setInt(1, idTransaction);
+            stmt.setInt(2, itemQuantity);
             stmt.executeUpdate();
             return (true);
         } catch (SQLException e) {

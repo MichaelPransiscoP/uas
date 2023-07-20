@@ -20,6 +20,7 @@ import Model.Customer;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
 /**
@@ -33,7 +34,7 @@ public class Register extends JFrame implements ActionListener {
     JFrame frame = this;
 
     public Register() {
-        this.setTitle("Landing Page");
+        this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
         JPanel panel = new JPanel();
         panel.setBounds(0, 0, 650, 950);

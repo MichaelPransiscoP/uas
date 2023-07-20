@@ -13,11 +13,11 @@ import javax.swing.JPanel;
 
 import Model.Store;
 
-public class PilihStorePage extends JFrame{
-    
-    public PilihStorePage(){
+public class PilihStorePage extends JFrame {
+
+    public PilihStorePage() {
         this.setTitle("Pilih Lokasi Store");
-        
+
         JFrame frame = this;
         JPanel panel = new JPanel();
         panel.setBounds(0, 0, 650, 950);
@@ -25,32 +25,50 @@ public class PilihStorePage extends JFrame{
         //
 
         ArrayList<Store> stores = Controller.StoreFunction.getStores();
-        // Show List Store
+//         Show List Store
+//        for (int i = 0; i < stores.size(); i++) {
+//            JLabel namaCabang = new JLabel("<html><h1>" + stores.get(i).getCabang() + "</h1>" + stores.get(i).getDeskripsi() + "</html>");
+//            namaCabang.setFont(new Font("Arial", Font.PLAIN, 17));
+//            namaCabang.setForeground(Color.white);
+//            namaCabang.setBounds(20, 90*i, 250, 70);
+//            panel.add(namaCabang);
+//            JButton pilihCabang = new JButton("Pilih Cabang Ini");
+//            pilihCabang.setFont(new Font("Arial", Font.PLAIN, 14));
+//            pilihCabang.setBounds(450, 90*i + 20, 150, 50);
+//            pilihCabang.addActionListener(new ActionListener() {
+//            public void actionPerformed(ActionEvent e){
+//                frame.setVisible(false);
+//                // new OrderMenuPage(stores.get(i))
+//            }
+//        });
+
         for (int i = 0; i < stores.size(); i++) {
             JLabel namaCabang = new JLabel("<html><h1>" + stores.get(i).getCabang() + "</h1>" + stores.get(i).getDeskripsi() + "</html>");
             namaCabang.setFont(new Font("Arial", Font.PLAIN, 17));
             namaCabang.setForeground(Color.white);
-            namaCabang.setBounds(20, 90*i, 250, 70);
+            namaCabang.setBounds(20, 90 * i, 250, 70);
             panel.add(namaCabang);
+            JLabel idCabang = new JLabel(String.valueOf(stores.get(i).getId()));
             JButton pilihCabang = new JButton("Pilih Cabang Ini");
             pilihCabang.setFont(new Font("Arial", Font.PLAIN, 14));
-            pilihCabang.setBounds(450, 90*i + 20, 150, 50);
+            pilihCabang.setBounds(450, 90 * i + 20, 150, 50);
+            
             pilihCabang.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e){
-                frame.setVisible(false);
-                // new OrderMenuPage(stores.get(i))
-            }
-        });
+                public void actionPerformed(ActionEvent e) {
+                    new MenuOrder(Integer.parseInt(idCabang.getText()));
+                    frame.setVisible(false);
+                    
+                }
+            });
             panel.add(pilihCabang);
         }
 
-
         // Back Button
         JButton back = new JButton("Back");
-        back.setBounds(20, 90*stores.size()+20, 150, 30);
+        back.setBounds(20, 90 * stores.size() + 20, 150, 30);
         back.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e) {
                 frame.dispose();
                 new MainMenuCustomer();
             }
@@ -65,5 +83,8 @@ public class PilihStorePage extends JFrame{
         this.setLayout(null);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
+    }
+    public static void main(String[] args) {
+        new PilihStorePage();
     }
 }
