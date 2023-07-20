@@ -8,7 +8,10 @@ package View;
 import Controller.CustomerFunction;
 import static Controller.CustomerFunction.getCustomer;
 import Controller.StoreFunction;
+import Controller.VoucherFunction;
+
 import static Controller.StoreFunction.getVoucher;
+import static Controller.VoucherFunction.getVoucherByID;
 import Model.Customer;
 import Model.Item;
 import Model.SingletonUserManager;
@@ -20,6 +23,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import javax.swing.ButtonGroup;
 import javax.swing.ComboBoxModel;
@@ -45,9 +50,11 @@ public class Pembayaran extends JFrame implements ActionListener, MouseListener 
     JButton pay;
     JRadioButton butDelivery, butPickup;
     JLabel lDiskon;
-    ArrayList<Voucher> listVoucher;
-    JComboBox cbVoucher;
+    JLabel textTotal;
+    Voucher voucher = new Voucher();
+    JButton cbVoucher;
     int totalBayar;
+    int totalPrice = 0;
 
     //
     ArrayList<Item> items = new ArrayList();
@@ -55,7 +62,7 @@ public class Pembayaran extends JFrame implements ActionListener, MouseListener 
     public Pembayaran() {
 
         items = StoreFunction.getItem();
-
+        voucher.setDiscount(0);
         ArrayList<Integer> qty = new ArrayList();
 
         qty.add(1);
@@ -111,7 +118,6 @@ public class Pembayaran extends JFrame implements ActionListener, MouseListener 
         panel.add(headMenu);
 
         int spaceAntarText = 210;
-        int totalPrice = 0;
         for (int i = 0; i < 3; i++) {
             JLabel nameLabel = new JLabel("<html>" + (i + 1) + ".&ensp; " + items.get(i).getName());
             nameLabel.setFont(new Font("Arial", Font.BOLD, 18));
@@ -155,13 +161,26 @@ public class Pembayaran extends JFrame implements ActionListener, MouseListener 
         lVoucher.setForeground(Color.white);
         panel.add(lVoucher);
         //Voucher
-        listVoucher = getVoucher();
-        ArrayList<String> namaVoucher = new ArrayList();
-        for (int i = 0; i < listVoucher.size(); i++) {
-            namaVoucher.add(listVoucher.get(i).getName() + ", " + listVoucher.get(i).getDesc());
-        }
-        cbVoucher = new JComboBox(namaVoucher.toArray());
+        JLabel textVoucher = new JLabel();
+        JLabel totalPriceLabel = new JLabel(String.valueOf(totalPrice));
+        textVoucher.setFont(new Font("Arial", Font.BOLD, 20));
+        textVoucher.setBounds(50, spaceAntarText + 50, 150, 25);
+        textVoucher.setForeground(Color.white);
+        cbVoucher = new JButton("Pilih Voucher");
         cbVoucher.setBounds(150, spaceAntarText + 80, 250, 30);
+        cbVoucher.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                ViewVoucherPage temp = new ViewVoucherPage(Integer.parseInt(totalPriceLabel.getText()));
+                temp.addWindowListener(new WindowAdapter() {
+                    public void windowClosed(WindowEvent e){
+                        textVoucher.setText(temp.voucherID);
+                        voucher = VoucherFunction.getVoucherByID(textVoucher.getText());
+                        textVoucher.setText(voucher.getName());
+                    }
+                });
+            }
+        });
+        panel.add(textVoucher);
         panel.add(cbVoucher);
         cbVoucher.addMouseListener(this);
 
@@ -178,7 +197,7 @@ public class Pembayaran extends JFrame implements ActionListener, MouseListener 
         lDiskon.setBounds(482, spaceAntarText + 80, 150, 25);
         lDiskon.setForeground(Color.white);
         panel.add(lDiskon);
-        lDiskon.setText("- " + String.valueOf(listVoucher.get(cbVoucher.getSelectedIndex()).getDiscount()));
+        lDiskon.setText("- " + String.valueOf(voucher.getDiscount()));
 
         JLabel garisBawah2 = new JLabel("--------------------------------------------------------------------------");
         garisBawah2.setFont(new Font("Arial", Font.BOLD, 20));
@@ -186,12 +205,12 @@ public class Pembayaran extends JFrame implements ActionListener, MouseListener 
         garisBawah2.setBounds(42, spaceAntarText + 100, 600, 50);
         panel.add(garisBawah2);
 
-        JLabel textTotal = new JLabel("Total   :        " + (int) (totalPrice - listVoucher.get(cbVoucher.getSelectedIndex()).getDiscount()));
+        textTotal = new JLabel("Total   :        " + (int) (totalPrice - voucher.getDiscount()));
         textTotal.setFont(new Font("Arial", Font.BOLD, 20));
         textTotal.setForeground(Color.white);
         textTotal.setBounds(365, spaceAntarText + 130, 600, 50);
         panel.add(textTotal);
-        totalBayar = (int) (totalPrice - listVoucher.get(cbVoucher.getSelectedIndex()).getDiscount());
+        totalBayar = (int) (totalPrice - voucher.getDiscount());
 
         butPickup = new JRadioButton("Pickup");
         butPickup.setBounds(100, spaceAntarText + 130, 100, 50);
@@ -259,7 +278,7 @@ public class Pembayaran extends JFrame implements ActionListener, MouseListener 
                         //looping sebanyak berapa pesanan yang dibuat, keknya kurang quantity nanti dipikirinlagi zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
                         //zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
                         for (int i = 0; i < 3; i++) {
-                            CustomerFunction.insertHistoryTransaction(cs.getId(), 0, items.get(i).getId(), listVoucher.get(cbVoucher.getSelectedIndex()).getId());
+                            CustomerFunction.insertHistoryTransaction(cs.getId(), 0, items.get(i).getId(), voucher.getId());
                         }
                         JOptionPane.showMessageDialog(null, "<html>Order successful<br>Your order is being processed ^-^</html>", "Payment", JOptionPane.INFORMATION_MESSAGE);
                         new MainMenuCustomer();
@@ -281,26 +300,31 @@ public class Pembayaran extends JFrame implements ActionListener, MouseListener 
 
     @Override
     public void mouseClicked(MouseEvent me) {
-        lDiskon.setText("- " + String.valueOf(listVoucher.get(cbVoucher.getSelectedIndex()).getDiscount()));
+        lDiskon.setText("- " + String.valueOf(voucher.getDiscount()));
+        textTotal.setText("Total   :        " + (int) (totalPrice - voucher.getDiscount()));
     }
 
     @Override
     public void mousePressed(MouseEvent me) {
-        lDiskon.setText("- " + String.valueOf(listVoucher.get(cbVoucher.getSelectedIndex()).getDiscount()));
+        lDiskon.setText("- " + String.valueOf(voucher.getDiscount()));
+        textTotal.setText("Total   :        " + (int) (totalPrice - voucher.getDiscount()));
     }
 
     @Override
     public void mouseReleased(MouseEvent me) {
-        lDiskon.setText("- " + String.valueOf(listVoucher.get(cbVoucher.getSelectedIndex()).getDiscount()));
+        lDiskon.setText("- " + String.valueOf(voucher.getDiscount()));
+        textTotal.setText("Total   :        " + (int) (totalPrice - voucher.getDiscount()));
     }
 
     @Override
     public void mouseEntered(MouseEvent me) {
-        lDiskon.setText("- " + String.valueOf(listVoucher.get(cbVoucher.getSelectedIndex()).getDiscount()));
+        lDiskon.setText("- " + String.valueOf(voucher.getDiscount()));
+        textTotal.setText("Total   :        " + (int) (totalPrice - voucher.getDiscount()));
     }
 
     @Override
     public void mouseExited(MouseEvent me) {
-        lDiskon.setText("- " + String.valueOf(listVoucher.get(cbVoucher.getSelectedIndex()).getDiscount()));
+        lDiskon.setText("- " + String.valueOf(voucher.getDiscount()));
+        textTotal.setText("Total   :        " + (int) (totalPrice - voucher.getDiscount()));
     }
 }
