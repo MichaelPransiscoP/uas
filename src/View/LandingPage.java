@@ -18,6 +18,7 @@ import javax.swing.*;
 public class LandingPage extends JFrame {
 
     public LandingPage() {
+        this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         this.setTitle("Landing Page");
         
         JFrame frame = this;

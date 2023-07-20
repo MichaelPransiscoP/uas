@@ -17,6 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import Model.Customer;
 import Model.SingletonUserManager;
+import javax.swing.JDialog;
 
 /**
  *
@@ -25,10 +26,10 @@ import Model.SingletonUserManager;
 //ini menu setelah login/register (setelah LandingPage.java)
 //Tambahin button button disini
 public class MainMenuCustomer extends JFrame {
-    
+
     public MainMenuCustomer() {
         this.setTitle("Main Menu Customer");
-        
+        this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         JFrame frame = this;
         JPanel panel = new JPanel();
         panel.setBounds(0, 0, 650, 950);
@@ -45,7 +46,7 @@ public class MainMenuCustomer extends JFrame {
             public void actionPerformed(ActionEvent ae) {
                 frame.setVisible(false);
                 new PanelProfile();
-            }            
+            }
         });
 
         //Text
@@ -77,8 +78,8 @@ public class MainMenuCustomer extends JFrame {
         store.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.setVisible(false);
                 new PilihStorePage();
+                frame.setVisible(false);
             }
         });
         panel.add(store);
@@ -100,7 +101,7 @@ public class MainMenuCustomer extends JFrame {
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
-//    public static void main(String[] args) {
-//        new MainMenuCustomer();
-//    }
+    public static void main(String[] args) {
+        new MainMenuCustomer();
+    }
 }
