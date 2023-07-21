@@ -12,9 +12,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import Model.Store;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class PilihStorePage extends JFrame {
-
+    int storeId = -1;
     public PilihStorePage() {
         this.setTitle("Pilih Lokasi Store");
 
@@ -25,23 +27,7 @@ public class PilihStorePage extends JFrame {
         //
 
         ArrayList<Store> stores = Controller.StoreFunction.getStores();
-//         Show List Store
-//        for (int i = 0; i < stores.size(); i++) {
-//            JLabel namaCabang = new JLabel("<html><h1>" + stores.get(i).getCabang() + "</h1>" + stores.get(i).getDeskripsi() + "</html>");
-//            namaCabang.setFont(new Font("Arial", Font.PLAIN, 17));
-//            namaCabang.setForeground(Color.white);
-//            namaCabang.setBounds(20, 90*i, 250, 70);
-//            panel.add(namaCabang);
-//            JButton pilihCabang = new JButton("Pilih Cabang Ini");
-//            pilihCabang.setFont(new Font("Arial", Font.PLAIN, 14));
-//            pilihCabang.setBounds(450, 90*i + 20, 150, 50);
-//            pilihCabang.addActionListener(new ActionListener() {
-//            public void actionPerformed(ActionEvent e){
-//                frame.setVisible(false);
-//                // new OrderMenuPage(stores.get(i))
-//            }
-//        });
-
+        
         for (int i = 0; i < stores.size(); i++) {
             JLabel namaCabang = new JLabel("<html><h1>" + stores.get(i).getCabang() + "</h1>" + stores.get(i).getDeskripsi() + "</html>");
             namaCabang.setFont(new Font("Arial", Font.PLAIN, 17));
@@ -55,9 +41,8 @@ public class PilihStorePage extends JFrame {
             
             pilihCabang.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    new MenuOrder(Integer.parseInt(idCabang.getText()));
-                    frame.setVisible(false);
-                    
+                    storeId = Integer.parseInt(idCabang.getText() + 1);
+                    frame.dispose();
                 }
             });
             panel.add(pilihCabang);
@@ -83,6 +68,11 @@ public class PilihStorePage extends JFrame {
         this.setLayout(null);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
+        this.addWindowListener(new WindowAdapter() {
+            public void windowClosed(WindowEvent e){
+                new MenuOrder(storeId);
+            }
+        });
     }
     public static void main(String[] args) {
         new PilihStorePage();

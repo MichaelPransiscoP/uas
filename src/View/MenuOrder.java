@@ -13,20 +13,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
-import Controller.CustomerFunction;
-import Model.Customer;
 import Model.Item;
 import View.LandingPage;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
-
 /**
  *
  * @author RAPHAEL
@@ -120,7 +109,7 @@ public class MenuOrder extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
     }
-
+    
     public static void main(String[] args) {
         new MenuOrder(1);
     }
