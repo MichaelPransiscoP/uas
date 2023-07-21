@@ -12,34 +12,35 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import Controller.CustomerFunction;
+import Model.Customer;
 import Model.Item;
 import View.LandingPage;
 import java.util.ArrayList;
+
 /**
- *
- * @author RAPHAEL
+ * Represents the MenuOrder window.
  */
 public class MenuOrder extends JFrame implements ActionListener {
 
-    JButton back;
+    JButton back, viewCart, removeItem, pay;
     JFrame frame = this;
+    ArrayList<Item> customerItems = new ArrayList<>();
 
     public MenuOrder(int idStore) {
-        
         ArrayList<Item> items = Controller.StoreFunction.getAvailItem(idStore);
-        ArrayList<Item> customerItems = new ArrayList<>();
 
         this.setTitle("Order Menu");
 
         JPanel panel = new JPanel();
         panel.setBounds(0, 0, 650, 950);
         panel.setBackground(Color.gray);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //Back button
+
         back = new JButton("Back");
         back.setFont(new Font("Arial", Font.PLAIN, 13));
-        back.setBounds(20, 20, 70, 70);
+        back.setBounds(20, 20, 70, 60);
         panel.add(back);
         back.addActionListener(new ActionListener() {
             @Override
@@ -49,16 +50,16 @@ public class MenuOrder extends JFrame implements ActionListener {
             }
         });
 
-        JLabel masuk = new JLabel("Menu Order");
-        masuk.setFont(new Font("Arial", Font.BOLD, 23));
-        masuk.setForeground(Color.white);
-        masuk.setBounds(230, 20, 250, 70);
-        panel.add(masuk);
-        JLabel masuk2 = new JLabel("Menu Order");
-        masuk2.setFont(new Font("Arial", Font.BOLD, 23));
-        masuk2.setForeground(Color.BLACK);
-        masuk2.setBounds(232, 22, 250, 70);
-        panel.add(masuk2);
+        viewCart = new JButton("View Cart");
+        viewCart.setFont(new Font("Arial", Font.PLAIN, 13));
+        viewCart.setBounds(500, 20, 100, 70);
+        panel.add(viewCart);
+        viewCart.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                showCart();
+            }
+        });
 
         int startY = 130;
         int height = 130;
@@ -88,29 +89,103 @@ public class MenuOrder extends JFrame implements ActionListener {
             panel.add(addButton);
 
             final int index = i;
-            this.add(panel);
 
             addButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     customerItems.add(items.get(index));
+                    JOptionPane.showMessageDialog(frame, "Item added to cart.");
                 }
             });
         }
+
+        removeItem = new JButton("Remove Item");
+        removeItem.setFont(new Font("Arial", Font.PLAIN, 13));
+        removeItem.setBounds(300, 800, 150, 50);
+        panel.add(removeItem);
+        removeItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                removeItemFromCart();
+            }
+        });
+
+        // Pay button
+        pay = new JButton("Pay");
+        pay.setFont(new Font("Arial", Font.PLAIN, 13));
+        pay.setBounds(500, 800, 90, 50);
+        panel.add(pay);
+        pay.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                proceedToPayment();
+            }
+        });
+
         this.add(panel);
         panel.setLayout(null);
-        //
         this.setSize(610, 950);
         this.setLayout(null);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
 
+    private void showCart() {
+        if (customerItems.isEmpty()) {
+            JOptionPane.showMessageDialog(frame, "Your cart is empty.");
+        } else {
+            StringBuilder cartItems = new StringBuilder();
+            for (Item item : customerItems) {
+                cartItems.append(item.getName()).append(" | Rp. ").append(item.getPrice()).append("\n");
+            }
+            JOptionPane.showMessageDialog(frame, "Your cart contains:\n" + cartItems.toString());
+        }
+    }
+
+    private void removeItemFromCart() {
+        if (customerItems.isEmpty()) {
+            JOptionPane.showMessageDialog(frame, "Your cart is empty.");
+        } else {
+            String[] itemNames = new String[customerItems.size()];
+            for (int i = 0; i < customerItems.size(); i++) {
+                itemNames[i] = customerItems.get(i).getName();
+            }
+            String selectedName = (String) JOptionPane.showInputDialog(frame, "Select an item to remove:", "Remove Item",
+                    JOptionPane.QUESTION_MESSAGE, null, itemNames, itemNames[0]);
+
+            if (selectedName != null) {
+                Item selectedItem = null;
+                for (Item item : customerItems) {
+                    if (item.getName().equals(selectedName)) {
+                        selectedItem = item;
+                        break;
+                    }
+                }
+
+                if (selectedItem != null) {
+                    customerItems.remove(selectedItem);
+                    JOptionPane.showMessageDialog(frame, "Item removed from cart: " + selectedName);
+                }
+            }
+        }
+    }
+
+    private void proceedToPayment() {
+        if (customerItems.isEmpty()) {
+            JOptionPane.showMessageDialog(frame, "Your cart is empty. Add items to the cart before proceeding to payment.");
+        } else {
+           
+            JOptionPane.showMessageDialog(frame, "Payment successful. Thank you for your purchase!");
+            customerItems.clear(); 
+        }
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
     }
-    
+
     public static void main(String[] args) {
         new MenuOrder(1);
     }
 }
+
