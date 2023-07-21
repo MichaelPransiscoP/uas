@@ -284,8 +284,8 @@ public class Pembayaran extends JFrame implements ActionListener, MouseListener 
                         }
                         ArrayList<Transaction> trans = GlobalFunction.getHistoryTransaction();
                         ArrayList<Transaction> transreverse = new ArrayList();
-                        
-                        //reverse arraylist untuk ambil transaksi terakhir
+              
+                        //reverse arraylist untuk ambil transaksi terakhi
                         for (int i = 3; i > 0; i--) {
                             transreverse.add(trans.get(i - 1));
                         }

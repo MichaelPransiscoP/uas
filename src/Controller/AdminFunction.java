@@ -39,26 +39,25 @@ public class AdminFunction {
         String query = "INSERT INTO item (name,desc,price,availability) VALUES(?,?,?,?)";
         String detailQuery = "INSERT INTO detailItem (idItem,availability) VALUES(?,?)";
         try {
-            
+
             PreparedStatement stmt = conn.con.prepareStatement(query);
             stmt.setString(1, name);
             stmt.setString(2, deskripsi);
             stmt.setString(3, harga);
             stmt.executeUpdate();
-            
+
             ResultSet generatedKeys = stmt.getGeneratedKeys();
             int itemId = -1;
             if (generatedKeys.next()) {
                 itemId = generatedKeys.getInt(1);
             }
-            
+
             PreparedStatement detailStmt = conn.con.prepareStatement(detailQuery);
             detailStmt.setInt(1, itemId);
             EnumCheckItem enumIn = EnumCheckItem.AVAILABLE;
             detailStmt.setString(2, enumIn.name());
             detailStmt.executeUpdate();
-            
-            
+
             Item menu = new Item(name, deskripsi, harga, EnumCheckItem.AVAILABLE);
             SingletonUserManager.getInstance().setUser(menu);
 
@@ -69,14 +68,14 @@ public class AdminFunction {
         }
     }
 
-    public static ArrayList<Transaction> getTransactionsList(){
+    public static ArrayList<Transaction> getTransactionsList() {
         conn.connect();
         String query = "SELECT * FROM transaction";
         ArrayList<Transaction> transactions = new ArrayList<Transaction>();
         try {
             Statement stmt = conn.con.createStatement();
             ResultSet rs = stmt.executeQuery(query);
-            while (rs.next()){
+            while (rs.next()) {
                 Transaction temp = new Transaction();
                 temp.setId(rs.getInt(1));
                 temp.setIdCustomer(rs.getInt(2));
@@ -90,5 +89,24 @@ public class AdminFunction {
             e.printStackTrace();
         }
         return transactions;
+    }
+
+    public static boolean insertVoucher(int id, String name, String desc, double discount, double condition) {
+        conn.connect();
+        try {
+            String query = "INSERT INTO voucher (`id` ,name, `desc`, discount, `condition`) VALUES (?,?, ?, ?, ?)";
+            PreparedStatement statement = conn.con.prepareStatement(query);
+            statement.setInt(1, id);
+            statement.setString(2, name);
+            statement.setString(3, desc);
+            statement.setDouble(4, discount);
+            statement.setDouble(5, condition);
+
+            statement.executeUpdate();
+            return (true);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return (false);
+        }
     }
 }

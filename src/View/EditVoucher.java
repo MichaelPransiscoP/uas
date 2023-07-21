@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package View;
+import Controller.AdminFunction;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -64,9 +65,14 @@ public class EditVoucher extends JFrame implements ActionListener {
             String desc = tfDesc.getText();
             double discount = Double.parseDouble(tfDiscount.getText());
             double condition = Double.parseDouble(tfCondition.getText());
+            boolean success = AdminFunction.insertVoucher(id,name, desc, discount, condition);
 
-            
-            lblStatus.setText("Voucher updated successfully!");
+                if (success) {
+                    lblStatus.setText("New voucher added successfully!");
+                } else {
+                    lblStatus.setText("Error while adding the voucher!");
+                }
+
         } else if (e.getSource() == btnAddNew) {
             String name = tfName.getText();
             String desc = tfDesc.getText();
@@ -76,5 +82,7 @@ public class EditVoucher extends JFrame implements ActionListener {
             lblStatus.setText("New voucher added successfully!");
         }
     }
-
+    public static void main(String[] args) {
+        new EditVoucher();
+    }
 }
