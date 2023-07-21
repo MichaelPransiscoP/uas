@@ -37,16 +37,29 @@ public class AdminFunction {
     public static boolean AddMakananMinuman(String name, String harga, String deskripsi) {
         conn.connect();
         String query = "INSERT INTO item (name,desc,price,availability) VALUES(?,?,?,?)";
+        String detailQuery = "INSERT INTO detailItem (idItem,availability) VALUES(?,?)";
         try {
+            
             PreparedStatement stmt = conn.con.prepareStatement(query);
             stmt.setString(1, name);
             stmt.setString(2, deskripsi);
             stmt.setString(3, harga);
-            EnumCheckItem enumIn = EnumCheckItem.NOTAVAILABLE;
-            stmt.setString(4, enumIn.name());
-
             stmt.executeUpdate();
-            Item menu = new Item(name, deskripsi, harga, EnumCheckItem.NOTAVAILABLE);
+            
+            ResultSet generatedKeys = stmt.getGeneratedKeys();
+            int itemId = -1;
+            if (generatedKeys.next()) {
+                itemId = generatedKeys.getInt(1);
+            }
+            
+            PreparedStatement detailStmt = conn.con.prepareStatement(detailQuery);
+            detailStmt.setInt(1, itemId);
+            EnumCheckItem enumIn = EnumCheckItem.AVAILABLE;
+            detailStmt.setString(2, enumIn.name());
+            detailStmt.executeUpdate();
+            
+            
+            Item menu = new Item(name, deskripsi, harga, EnumCheckItem.AVAILABLE);
             SingletonUserManager.getInstance().setUser(menu);
 
             return (true);
