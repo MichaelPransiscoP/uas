@@ -21,7 +21,7 @@ import Model.Customer;
 public class HapusCustomerPage extends JFrame{
     public HapusCustomerPage(){
         this.setTitle("Hapus Customer");
-
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JFrame frame = this;
         JPanel panel = new JPanel();
         panel.setBounds(0, 0, 650, 950);

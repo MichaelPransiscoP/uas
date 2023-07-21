@@ -37,7 +37,7 @@ public class JoinMembershipCustomer extends JFrame implements ActionListener {
 
     public JoinMembershipCustomer() {
         this.setTitle("Kofi Membership");
-
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JFrame frame = this;
         JPanel panel = new JPanel();
         panel.setBounds(0, 0, 650, 950);

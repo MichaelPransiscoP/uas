@@ -38,7 +38,7 @@ public class EditAlamat extends JFrame implements ActionListener {
         JPanel panel = new JPanel();
         panel.setBounds(0, 0, 650, 950);
         panel.setBackground(Color.gray);
-        //
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //Back button
         JButton back = new JButton("Back");
         back.setFont(new Font("Arial", Font.PLAIN, 13));

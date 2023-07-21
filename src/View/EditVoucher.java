@@ -4,10 +4,6 @@
  * and open the template in the editor.
  */
 package View;
-
-
-
-
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -17,12 +13,11 @@ public class EditVoucher extends JFrame implements ActionListener {
     private JTextField tfId, tfName, tfDesc, tfDiscount, tfCondition;
     private JButton btnEdit, btnAddNew;
     private JLabel lblStatus;
-
+    
     public EditVoucher() {
         setTitle("Edit Voucher (Super Admin)");
         setSize(400, 300);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-
         Container c = getContentPane();
         c.setLayout(new GridLayout(8, 2));
 

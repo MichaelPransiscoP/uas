@@ -25,7 +25,6 @@ public class LandingPage extends JFrame {
         JPanel panel = new JPanel();
         panel.setBounds(0, 0, 650, 950);
         panel.setBackground(Color.gray);
-        
 //      profile
         JButton profil = new JButton("Profile");
         profil.setFont(new Font("Arial", Font.BOLD, 11));
